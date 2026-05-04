@@ -61,16 +61,12 @@
       border-radius: 0 0 1rem 1rem;
     }
 
-    /* -------------------------------------
-       NUEVAS ANIMACIONES PARA EL MODAL (EL EFECTO "WOW")
-       ------------------------------------- */
     .modal-content {
       border-radius: 1.5rem; 
       background-color: white; 
       border: none;
     }
 
-    /* 1. El Emoji crece desde cero hasta su tamaño final */
     .emoji-grow-fx {
       display: inline-block;
       animation: popGrow 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -81,21 +77,16 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* 2. El Texto aparece suavemente (Fade-in) SIN MOVERSE */
     .details-fade-fx {
       opacity: 0;
       animation: simpleFade 0.6s ease forwards;
-      animation-delay: 0.5s; /* Espera medio segundo a que el emoji crezca */
+      animation-delay: 0.5s; 
     }
     @keyframes simpleFade {
       0% { opacity: 0; }
       100% { opacity: 1; }
     }
 
-
-    /* -------------------------------------
-       ANIMACIONES DE MOVIMIENTO Y AURA DE LAS TARJETAS
-       ------------------------------------- */
     .icon-base {
       font-size: 1.5rem;
       margin-right: 5px;
@@ -248,12 +239,12 @@
       {"name": "Jorge Luis Araya Alfaro", "dob": "1994-02-09", "theme": "Mitología, Magia, Harry Potter, Percy Jackson", "activity": "Percy Jackson, El atardecer", "color": "Verde, azul y rojo", "song": "Make you feel My Love - Adele", "photo": ""},
       {"name": "Rebeca Sarai Palacios Torres", "dob": "1993-08-19", "theme": "Maquillaje", "activity": "", "color": "Azul marino", "song": "", "photo": ""},
       {"name": "Oscar Martín Aguilar", "dob": "1990-01-30", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
-      // CORRECCIÓN: Datos de Karizma actualizados
       {"name": "Karizma Macias Ramos", "dob": "1995-08-21", "theme": "mar", "activity": "Nanny fran", "color": "Blanco", "song": "feliz cumpleaños song", "photo": ""},
       {"name": "Arlette Alejandra Cruzado Rodríguez", "dob": "2025-10-16", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
       {"name": "Vladimir Zárate Nava", "dob": "2025-12-28", "theme": "", "activity": "", "color": "", "song": "", "photo": ""}, 
       {"name": "José Antonio Benavides Paredes", "dob": "1995-11-05", "theme": "Animal crossing", "activity": "Tocar música", "color": "Azul", "song": "Tota-pop de Totakeke", "photo": ""},
-      {"name": "Gilberto Lara Mendoza", "dob": "1984-05-07", "theme": "lucha libre, musica, futbol, literatura, cine", "activity": "frontenis, natacion, leer, escuchar musica, meditar, tocar el bajo", "color": "Morado y negro", "song": "no rain de blind melon", "photo": ""}
+      {"name": "Gilberto Lara Mendoza", "dob": "1984-05-07", "theme": "lucha libre, musica, futbol, literatura, cine", "activity": "frontenis, natacion, leer, escuchar musica, meditar, tocar el bajo", "color": "Morado y negro", "song": "no rain de blind melon", "photo": ""},
+      {"name": "Alejandro Gutiérrez Montaño", "dob": "1994-06-10", "theme": "Vintage casual, bohemio", "activity": "Mark Wahlberg, Ironman de Marvel, ver películas y serie mundial de beisbol", "color": "Negro, Azul marino", "song": "Mañanitas con mariachi", "photo": ""}
     ];
 
     function getColor(colorDesc) {
@@ -268,7 +259,7 @@
       if (desc.includes('aqua')) return '#0dcaf0';
       if (desc.includes('cafe') || desc.includes('beige')) return '#8B4513';
       if (desc.includes('gris')) return '#6c757d';
-      if (desc.includes('blanco')) return '#ffffff'; // Añadido soporte para blanco (Karizma)
+      if (desc.includes('blanco')) return '#ffffff';
       if (desc.includes('pastel')) return '#ffb6c1';
       return 'gold';
     }
@@ -293,9 +284,9 @@
       "Rebeca Sarai Palacios Torres": { icon: "💄", css: "anim-float" },
       "José Antonio Benavides Paredes": { icon: "🎸", css: "anim-shake" },
       "Arturo Joel Martínez Ponce": { icon: "🪅", css: "anim-pulse" },
-      // CORRECCIÓN: Iconos para Karizma y Gilberto
-      "Karizma Macias Ramos": { icon: "🌊", css: "anim-float" }, // Ola de mar
-      "Gilberto Lara Mendoza": { icon: "🏊‍♂️", css: "anim-pulse" } // Nadador hombre
+      "Karizma Macias Ramos": { icon: "🌊", css: "anim-float" }, 
+      "Gilberto Lara Mendoza": { icon: "🏊‍♂️", css: "anim-pulse" },
+      "Alejandro Gutiérrez Montaño": { icon: "🦾", css: "anim-bounce" }
     };
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -347,27 +338,27 @@
       let cardIcon = `<span class="universal-emoji" style="font-size:4rem;">🎂</span>`;
       
       if (cleanName === "Arturo Joel Martínez Ponce") {
-         cardIcon = `<div class="arturo-cake universal-emoji">🍰</div>`;
+          cardIcon = `<div class="arturo-cake universal-emoji">🍰</div>`;
       }
 
       let nameHTML = `<h5>${p.name}</h5>`;
 
       if (cleanName === "Daniel Amante") {
-         const auraColor = getColor(p.color);
-         nameHTML = `
-           <div class="plane-container">
-             <div class="plane-icon universal-emoji" style="--aura-color: ${auraColor};">✈️</div>
-             <h5>${p.name}</h5>
-           </div>`;
+          const auraColor = getColor(p.color);
+          nameHTML = `
+            <div class="plane-container">
+              <div class="plane-icon universal-emoji" style="--aura-color: ${auraColor};">✈️</div>
+              <h5>${p.name}</h5>
+            </div>`;
       } else {
         const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
         const auraColor = getColor(p.color);
         
         nameHTML = `
-           <h5>
-             <span class="icon-base universal-emoji ${iconData.css}" style="--aura-color: ${auraColor};">${iconData.icon}</span>
-             <span style="vertical-align: middle;">${p.name}</span>
-           </h5>`;
+            <h5>
+              <span class="icon-base universal-emoji ${iconData.css}" style="--aura-color: ${auraColor};">${iconData.icon}</span>
+              <span style="vertical-align: middle;">${p.name}</span>
+            </h5>`;
       }
 
       return `
@@ -383,9 +374,6 @@
         </div>`;
     }
 
-    // ----------------------------------------------------
-    // FUNCIÓN PARA REINICIAR Y DISPARAR LA ANIMACIÓN EN CASCADA
-    // ----------------------------------------------------
     function triggerModalAnimations() {
       const emoji = document.getElementById("modalEmojiContainer");
       const title = document.getElementById("modalTitle");
@@ -414,7 +402,6 @@
       if (cleanName === "Daniel Amante") { icon = "✈️"; }
 
       document.getElementById("modalTitle").textContent = person.name;
-      // Quitamos la clase del movimiento normal para que crezca y se quede quieto con su aura
       document.getElementById("modalEmojiContainer").innerHTML = `
         <span class="universal-emoji" style="--aura-color: ${auraColor}; filter: drop-shadow(0 0 15px var(--aura-color));">${icon}</span>
       `;
