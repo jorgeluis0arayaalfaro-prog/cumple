@@ -6,13 +6,28 @@
   <title>Cumpleaños del Equipo CCF</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 
   <style>
+    :root{
+      --paper: #FFF3E0;
+      --paper-2: #FFE8CC;
+      --coral: #FF6B4A;
+      --dusk: #2D1B4E;
+      --marigold: #FFB347;
+      --teal: #4A90A4;
+      --magenta: #E63971;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      background: linear-gradient(to top, #c1e1ff 0%, #f0f9ff 100%);
-      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(1200px 500px at 50% -10%, #FFD9A0 0%, transparent 60%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 55%, #FFDCC2 100%);
+      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      color: var(--dusk);
       overflow-x: hidden;
     }
 
@@ -21,51 +36,235 @@
     }
 
     h1, h2 {
-      color: #0b5ed7;
-      font-weight: bold;
+      font-family: "Baloo 2", "Segoe UI", sans-serif;
+      color: var(--dusk);
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 2rem;
+      font-weight: 800;
+      font-size: 2.6rem;
+      margin: 0.25rem 0 0;
+      letter-spacing: 0.5px;
     }
 
+    .subtitle {
+      text-align: center;
+      color: #6b5a8a;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 3px;
+      background: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 14px);
+      opacity: 0.35;
+      border-radius: 2px;
+    }
+
+    /* ---------- Papel picado banner ---------- */
+    .picado-wrap {
+      position: relative;
+      padding-top: 34px;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+    }
+    .picado-string {
+      position: absolute;
+      top: 18px; left: 0; right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #8a7256 0 10px, transparent 10px 16px);
+    }
+    .picado-row {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+    .picado-flag {
+      width: 46px;
+      height: 58px;
+      flex: 0 0 auto;
+      clip-path: polygon(
+        0 0, 100% 0, 100% 78%,
+        88% 100%, 76% 78%,
+        64% 100%, 52% 78%,
+        40% 100%, 28% 78%,
+        16% 100%, 4% 78%, 0 78%
+      );
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10px;
+      font-size: 1.1rem;
+      opacity: 0.92;
+      animation: flagSway 3.4s ease-in-out infinite;
+      transform-origin: top center;
+    }
+    .picado-flag:nth-child(odd) { animation-delay: -1.2s; }
+    .picado-flag:nth-child(3n) { animation-delay: -2.1s; }
+    @keyframes flagSway {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    /* ---------- Cards ---------- */
     .birthday-card {
       border: none;
-      border-radius: 1rem;
+      border-radius: 1.1rem;
       cursor: pointer;
       transition: all 0.25s ease;
-      background: #eaeff2;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: #fffaf3;
+      box-shadow: 0 6px 16px rgba(45, 27, 78, 0.10);
+      position: relative;
+      overflow: visible;
     }
 
     .birthday-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      background: #ffffff;
+      transform: translateY(-6px) rotate(-0.5deg);
+      box-shadow: 0 12px 24px rgba(45, 27, 78, 0.18);
+    }
+
+    /* scalloped bottom edge, like a die-cut invitation */
+    .birthday-card::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
+      height: 16px;
+      background-image: radial-gradient(circle at 8px 0, transparent 8px, #fffaf3 8.5px);
+      background-size: 16px 16px;
+      background-repeat: repeat-x;
+      pointer-events: none;
     }
 
     .next-birthday-card {
-      border: 2px solid #0b5ed7;
+      border: 3px dashed var(--coral);
       animation: pulseAccent 2s infinite;
+      background: linear-gradient(160deg, #fffaf3 0%, #FFF0E0 100%);
     }
 
     @keyframes pulseAccent {
-      0% { box-shadow: 0 0 0 0 rgba(11, 94, 215, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(11, 94, 215, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(11, 94, 215, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0.45); }
+      70% { box-shadow: 0 0 0 12px rgba(255, 107, 74, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0); }
     }
 
     .today-birthday .card-body {
-      background-color: #d8f9e0;
-      border-radius: 0 0 1rem 1rem;
+      background: linear-gradient(160deg, #FFF3D6 0%, #FFE3B0 100%);
+      border-radius: 0 0 1.1rem 1.1rem;
     }
 
-    .modal-content {
-      border-radius: 1.5rem; 
-      background-color: white; 
-      border: none;
+    .today-birthday::after {
+      background-image: radial-gradient(circle at 8px 0, transparent 8px, #FFE3B0 8.5px);
     }
+
+    /* Medallion (lotería-style badge) around the emoji */
+    .medallion {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: radial-gradient(circle at 35% 30%, #fff 0%, #fff 35%, var(--medal-color, var(--marigold)) 100%);
+      border: 3px solid var(--medal-color, var(--marigold));
+      box-shadow: 0 0 0 5px #fffaf3, 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card-name {
+      font-family: "Baloo 2", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 0.75rem 0 0.15rem;
+    }
+
+    .card-date {
+      color: #8a7ba0;
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+
+    .badge-today {
+      background: var(--magenta);
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    /* icon animations kept, just parameterized via --aura-color already used */
+    .anim-float { animation: floatAnim 3s ease-in-out infinite; }
+    @keyframes floatAnim {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .anim-spin { animation: spinAnim 5s linear infinite; }
+    @keyframes spinAnim { 100% { transform: rotate(360deg); } }
+    .anim-bounce { animation: bounceAnim 1.2s ease-in-out infinite; }
+    @keyframes bounceAnim {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px) scale(1.05); }
+    }
+    .anim-shake { animation: shakeAnim 0.8s ease-in-out infinite; }
+    @keyframes shakeAnim {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-12deg); }
+      75% { transform: rotate(12deg); }
+    }
+    .anim-pulse { animation: pulseAnim 2s ease-in-out infinite; }
+    @keyframes pulseAnim {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    .anim-trident { animation: powerTrident 2s infinite ease-in-out; }
+    @keyframes powerTrident {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.12) translateY(-4px); }
+    }
+
+    .arturo-cake { position: relative; }
+    .arturo-cake::after {
+      content: '✨';
+      position: absolute;
+      top: -10px; right: -14px;
+      font-size: 1.1rem;
+      animation: sparkle 1.5s infinite alternate ease-in-out;
+    }
+    @keyframes sparkle {
+      0% { opacity: 0.3; transform: scale(0.8) rotate(-10deg); }
+      100% { opacity: 1; transform: scale(1.3) rotate(10deg); }
+    }
+
+    /* ---------- Modal ---------- */
+    .modal-content {
+      border-radius: 1.5rem;
+      background: #fffaf3;
+      border: none;
+      overflow: hidden;
+    }
+    .modal-content::before {
+      content: "";
+      display: block;
+      height: 10px;
+      background: repeating-linear-gradient(90deg,
+        var(--coral) 0 20px, var(--marigold) 20px 40px, var(--teal) 40px 60px, var(--magenta) 60px 80px);
+    }
+    #modalTitle { font-family: "Baloo 2", sans-serif; }
+    #modalDetails p { margin-bottom: 0.6rem; }
+    #modalDetails strong { color: var(--dusk); }
 
     .emoji-grow-fx {
       display: inline-block;
@@ -76,141 +275,57 @@
       70% { transform: scale(1.2); opacity: 1; }
       100% { transform: scale(1); opacity: 1; }
     }
-
     .details-fade-fx {
       opacity: 0;
       animation: simpleFade 0.6s ease forwards;
-      animation-delay: 0.5s; 
+      animation-delay: 0.5s;
     }
-    @keyframes simpleFade {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+    @keyframes simpleFade { 100% { opacity: 1; } }
 
-    .icon-base {
-      font-size: 1.5rem;
-      margin-right: 5px;
-      vertical-align: middle;
-      display: inline-block;
+    .btn-primary {
+      background: var(--coral);
+      border-color: var(--coral);
     }
-
-    .anim-float { animation: floatAnim 3s ease-in-out infinite; }
-    @keyframes floatAnim {
-      0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-      50% { transform: translateY(-8px); filter: drop-shadow(0 0 12px var(--aura-color, gold)); }
-    }
-
-    .anim-spin { animation: spinAnim 5s linear infinite; }
-    @keyframes spinAnim {
-      0% { transform: rotate(0deg); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-      50% { filter: drop-shadow(0 0 12px var(--aura-color, gold)); }
-      100% { transform: rotate(360deg); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-    }
-
-    .anim-bounce { animation: bounceAnim 1.2s ease-in-out infinite; }
-    @keyframes bounceAnim {
-      0%, 100% { transform: translateY(0); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-      50% { transform: translateY(-10px) scale(1.05); filter: drop-shadow(0 0 12px var(--aura-color, gold)); }
-    }
-
-    .anim-shake { animation: shakeAnim 0.8s ease-in-out infinite; }
-    @keyframes shakeAnim {
-      0%, 100% { transform: rotate(0deg); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-      25% { transform: rotate(-15deg); filter: drop-shadow(0 0 8px var(--aura-color, gold)); }
-      75% { transform: rotate(15deg); filter: drop-shadow(0 0 8px var(--aura-color, gold)); }
-    }
-
-    .anim-pulse { animation: pulseAnim 2s ease-in-out infinite; }
-    @keyframes pulseAnim {
-      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px var(--aura-color, gold)); }
-      50% { transform: scale(1.2); filter: drop-shadow(0 0 12px var(--aura-color, gold)); }
-    }
-
-    .anim-trident {
-      font-size: 2.2rem !important;
-      margin-right: 8px;
-      animation: powerTrident 2s infinite ease-in-out;
-    }
-    @keyframes powerTrident {
-      0%, 100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 2px var(--aura-color, #0b5ed7)); }
-      50% { transform: scale(1.15) translateY(-5px); filter: drop-shadow(0 0 15px var(--aura-color, #0b5ed7)); }
-    }
-
-    .plane-container {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-    .plane-icon {
-      position: absolute;
-      top: -30px;
-      left: 0;
-      font-size: 1.5rem;
-      animation: flyPlane 4s infinite linear;
-      z-index: 10;
-      pointer-events: none;
-    }
-    @keyframes flyPlane {
-      0% { transform: translateX(-40px) translateY(15px) scale(0.8); opacity: 0; filter: drop-shadow(0 0 5px var(--aura-color, red)); }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { transform: translateX(180px) translateY(-15px) scale(1.2); opacity: 0; filter: drop-shadow(0 0 15px var(--aura-color, red)); }
-    }
-
-    .arturo-cake {
-      font-size: 4rem;
-      display: inline-block;
-      animation: floatArturo 2s infinite ease-in-out;
-      position: relative;
-    }
-    .arturo-cake::after {
-      content: '✨🎉';
-      position: absolute;
-      top: -15px;
-      right: -30px;
-      font-size: 1.5rem;
-      animation: sparkle 1.5s infinite alternate ease-in-out;
-    }
-    @keyframes floatArturo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    @keyframes sparkle {
-      0% { opacity: 0.3; transform: scale(0.8) rotate(-10deg); }
-      100% { opacity: 1; transform: scale(1.3) rotate(10deg); }
+    .btn-primary:hover, .btn-primary:active {
+      background: var(--magenta) !important;
+      border-color: var(--magenta) !important;
     }
   </style>
 </head>
 <body>
   <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-center shadow-lg p-4">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
-        
-        <div class="modal-body p-0">
-          <div id="modalEmojiContainer" style="font-size: 5.5rem; line-height: 1.2;"></div>
-          
-          <h3 id="modalTitle" class="fw-bold mt-2" style="color: #0b5ed7;"></h3>
-          
-          <div id="modalDetails" class="text-start mt-4 px-2" style="font-size: 1.1rem;"></div>
-          
-          <button type="button" class="btn btn-primary mt-4 w-100 rounded-pill" data-bs-dismiss="modal" id="modalBtn">¡Genial! 🎈</button>
+      <div class="modal-content text-center shadow-lg">
+        <div class="p-4 position-relative">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;"></button>
+          <div class="modal-body p-0">
+            <div id="modalEmojiContainer" style="font-size: 5.5rem; line-height: 1.2;"></div>
+            <h3 id="modalTitle" class="fw-bold mt-2"></h3>
+            <div id="modalDetails" class="text-start mt-4 px-2" style="font-size: 1.05rem;"></div>
+            <button type="button" class="btn btn-primary mt-4 w-100 rounded-pill" data-bs-dismiss="modal" id="modalBtn">¡Genial! 🎈</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="container py-5">
-    <h1 class="universal-emoji">🥳 Cumpleaños del Equipo CCF 🥳</h1>
+  <div class="picado-wrap">
+    <div class="picado-string"></div>
+    <div class="picado-row" id="picadoRow"></div>
+  </div>
+
+  <div class="container pb-5 pt-2">
+    <h1 class="universal-emoji">Cumpleaños del Equipo CCF</h1>
+    <p class="subtitle">🌅 Un calendario para celebrar a cada quien como le gusta</p>
     <div id="error-box" class="alert alert-danger d-none text-center"></div>
 
-    <h2 class="mb-3 universal-emoji">🎁 Próximo Cumpleaños</h2>
+    <h2 class="mb-3 universal-emoji" style="color: var(--coral);">🎁 Próximo cumpleaños</h2>
     <div id="next-birthday" class="row mb-5 justify-content-center"></div>
 
-    <h2 class="mb-3 universal-emoji">💖 Cumpleaños de Este Mes</h2>
+    <h2 class="mb-3 universal-emoji" style="color: var(--magenta);">💖 Cumpleaños de este mes</h2>
     <div id="this-month" class="row g-4 mb-5"></div>
 
-    <h2 class="mb-3 universal-emoji">🗓️ Todos los Cumpleaños</h2>
+    <h2 class="mb-3 universal-emoji" style="color: var(--teal);">🗓️ Todos los cumpleaños</h2>
     <div id="all-birthdays" class="row g-4"></div>
   </div>
 
@@ -239,50 +354,74 @@
       {"name": "Oscar Martín Aguilar", "dob": "1990-01-30", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
       {"name": "Karizma Macias Ramos", "dob": "1995-08-21", "theme": "mar", "activity": "Nanny fran", "color": "Blanco", "song": "feliz cumpleaños song", "photo": ""},
       {"name": "Arlette Alejandra Cruzado Rodríguez", "dob": "2025-10-16", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
-      {"name": "Vladimir Zárate Nava", "dob": "2025-12-28", "theme": "", "activity": "", "color": "", "song": "", "photo": ""}, 
-     {"name": "Alejandro Gutiérrez Montaño", "dob": "1994-06-10", "theme": "Vintage casual, bohemio", "activity": "Mark Wahlberg, Ironman de Marvel, ver películas y serie mundial de beisbol", "color": "Negro, Azul marino", "song": "Mañanitas con mariachi", "photo": ""}
+      {"name": "Vladimir Zárate Nava", "dob": "2025-12-28", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
+      {"name": "Alejandro Gutiérrez Montaño", "dob": "1994-06-10", "theme": "Vintage casual, bohemio", "activity": "Mark Wahlberg, Ironman de Marvel, ver películas y serie mundial de beisbol", "color": "Negro, Azul marino", "song": "Mañanitas con mariachi", "photo": ""},
+      {"name": "Efrén Ernesto Pardo González", "dob": "1988-08-16", "theme": "", "activity": "Goku en Dragon Ball", "color": "Rojo", "song": "Las mañanitas", "photo": ""},
+      {"name": "Fabián Yarath Montiel Purdon", "dob": "2000-07-31", "theme": "Ciencias", "activity": "José José", "color": "Azul", "song": "Las mañanitas con cepillín", "photo": ""}
     ];
 
+    // Fiesta palette used for both papel picado flags and the "no color declared" fallback
+    const FIESTA_PALETTE = ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971", "#8a5fbf", "#2D9C6F"];
+
     function getColor(colorDesc) {
-      if (!colorDesc) return 'gold';
+      if (!colorDesc) return "#FFB347";
       const desc = colorDesc.toLowerCase();
-      if (desc.includes('azul')) return '#007bff';
-      if (desc.includes('verde')) return '#28a745';
-      if (desc.includes('rosa')) return '#e83e8c';
-      if (desc.includes('rojo') || desc.includes('tinto')) return '#dc3545';
-      if (desc.includes('morado') || desc.includes('lila')) return '#6f42c1';
-      if (desc.includes('negro') || desc.includes('black')) return '#343a40';
-      if (desc.includes('aqua')) return '#0dcaf0';
-      if (desc.includes('cafe') || desc.includes('beige')) return '#8B4513';
-      if (desc.includes('gris')) return '#6c757d';
-      if (desc.includes('blanco')) return '#ffffff';
-      if (desc.includes('pastel')) return '#ffb6c1';
-      return 'gold';
+      if (desc.includes('azul')) return '#4A90A4';
+      if (desc.includes('verde')) return '#2D9C6F';
+      if (desc.includes('rosa')) return '#E63971';
+      if (desc.includes('rojo') || desc.includes('tinto')) return '#FF6B4A';
+      if (desc.includes('morado') || desc.includes('lila')) return '#8a5fbf';
+      if (desc.includes('negro') || desc.includes('black')) return '#2D1B4E';
+      if (desc.includes('aqua')) return '#4A90A4';
+      if (desc.includes('cafe') || desc.includes('beige')) return '#A9714C';
+      if (desc.includes('gris')) return '#8a7ba0';
+      if (desc.includes('blanco')) return '#cfcfcf';
+      if (desc.includes('pastel')) return '#FFB6C1';
+      return '#FFB347';
     }
 
     const iconConfig = {
-      "Ricardo": { icon: "🚀", css: "anim-float" },
-      "Norma Isabel Corona Vizcaino": { icon: "🎺", css: "anim-shake" },
-      "Oscar Eliecer Lucio Palacio": { icon: "🐉", css: "anim-float" }, 
+      "Ricardo": { icon: "🤖", css: "anim-spin" },
+      "Norma Isabel Corona Vizcaino": { icon: "💃", css: "anim-bounce" },
+      "Oscar Eliecer Lucio Palacio": { icon: "🐉", css: "anim-float" },
       "Nicolás Gilberto Rojas Prado": { icon: "🪓", css: "anim-shake" },
       "Lucia Guadalupe Hernández Fierro": { icon: "🐎", css: "anim-bounce" },
-     "Briceyda González": { icon: "🔪", css: "anim-float" }, 
+      "Briceyda González": { icon: "🔪", css: "anim-float" },
       "Jessica De Anda": { icon: "🐶", css: "anim-bounce" },
+      "Daniel Amante": { icon: "🏎️", css: "anim-bounce" },
       "Valeria": { icon: "⚡", css: "anim-pulse" },
       "Liz": { icon: "🌅", css: "anim-pulse" },
       "Priscila Jacqueline Páez Martinez": { icon: "✨", css: "anim-pulse" },
       "Pamela": { icon: "🏖️", css: "anim-float" },
       "Luis Enrique Gastelum Castro": { icon: "🦸‍♂️", css: "anim-bounce" },
       "Getzemani David Albavera Soto": { icon: "🌲", css: "anim-float" },
-      "Jorge Luis Araya Alfaro": { icon: "🔱", css: "anim-trident" }, 
+      "Jorge Luis Araya Alfaro": { icon: "🔱", css: "anim-trident" },
       "Rebeca Sarai Palacios Torres": { icon: "💄", css: "anim-float" },
       "Arturo Joel Martínez Ponce": { icon: "🪅", css: "anim-pulse" },
-      "Karizma Macias Ramos": { icon: "🌊", css: "anim-float" }, 
-      "Alejandro Gutiérrez Montaño": { icon: "🦾", css: "anim-bounce" }
+      "Oscar Martín Aguilar": { icon: "🥳", css: "anim-pulse" },
+      "Karizma Macias Ramos": { icon: "🌊", css: "anim-float" },
+      "Arlette Alejandra Cruzado Rodríguez": { icon: "🎈", css: "anim-float" },
+      "Vladimir Zárate Nava": { icon: "🎊", css: "anim-pulse" },
+      "Alejandro Gutiérrez Montaño": { icon: "🦾", css: "anim-bounce" },
+      "Efrén Ernesto Pardo González": { icon: "🐲", css: "anim-shake" },
+      "Fabián Yarath Montiel Purdon": { icon: "🔬", css: "anim-float" }
     };
+
+    function buildPicadoBanner() {
+      const row = document.getElementById("picadoRow");
+      const count = 14;
+      let html = "";
+      for (let i = 0; i < count; i++) {
+        const color = FIESTA_PALETTE[i % FIESTA_PALETTE.length];
+        html += `<div class="picado-flag" style="background:${color};">✦</div>`;
+      }
+      row.innerHTML = html;
+    }
 
     document.addEventListener("DOMContentLoaded", () => {
       try {
+        buildPicadoBanner();
+
         const today = new Date();
         const currentMonth = today.getMonth();
         const currentDate = today.getDate();
@@ -326,41 +465,24 @@
     function createCard(p, highlight = false) {
       const date = p.dob.toLocaleDateString("es-ES", { day: "numeric", month: "long" });
       const cleanName = p.name.trim();
-      
-      let cardIcon = `<span class="universal-emoji" style="font-size:4rem;">🎂</span>`;
-      
+      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
+      const auraColor = getColor(p.color);
+
+      let emojiHTML = `<span class="universal-emoji ${iconData.css}">${iconData.icon}</span>`;
       if (cleanName === "Arturo Joel Martínez Ponce") {
-          cardIcon = `<div class="arturo-cake universal-emoji">🍰</div>`;
-      }
-
-      let nameHTML = `<h5>${p.name}</h5>`;
-
-      if (cleanName === "Daniel Amante") {
-          const auraColor = getColor(p.color);
-          nameHTML = `
-            <div class="plane-container">
-              <div class="plane-icon universal-emoji" style="--aura-color: ${auraColor};">✈️</div>
-              <h5>${p.name}</h5>
-            </div>`;
-      } else {
-        const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-        const auraColor = getColor(p.color);
-        
-        nameHTML = `
-            <h5>
-              <span class="icon-base universal-emoji ${iconData.css}" style="--aura-color: ${auraColor};">${iconData.icon}</span>
-              <span style="vertical-align: middle;">${p.name}</span>
-            </h5>`;
+        emojiHTML = `<span class="universal-emoji arturo-cake ${iconData.css}">${iconData.icon}</span>`;
       }
 
       return `
         <div class="col-md-4 col-lg-3">
           <div class="card birthday-card h-100 ${highlight ? "next-birthday-card" : ""} ${p.isToday ? "today-birthday" : ""}" data-name="${p.name}">
-            <div class="text-center pt-4 pb-2">${cardIcon}</div>
-            <div class="card-body text-center d-flex flex-column justify-content-center">
-              ${nameHTML}
-              <p class="text-muted mb-0">${date}</p>
-              ${p.isToday ? '<div class="mt-2"><span class="badge bg-success">¡ES HOY!</span></div>' : ""}
+            <div class="text-center pt-4 pb-1">
+              <div class="medallion" style="--medal-color: ${auraColor};">${emojiHTML}</div>
+            </div>
+            <div class="card-body text-center d-flex flex-column justify-content-center pt-2">
+              <div class="card-name">${p.name}</div>
+              <p class="card-date">${date}</p>
+              ${p.isToday ? '<div class="mt-2"><span class="badge badge-today">¡ES HOY!</span></div>' : ""}
             </div>
           </div>
         </div>`;
@@ -385,59 +507,43 @@
       btn.classList.add("details-fade-fx");
     }
 
-    function showInfo(person) {
-      const cleanName = person.name.trim();
-      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-      let icon = iconData.icon;
-      let auraColor = getColor(person.color);
-
-      if (cleanName === "Daniel Amante") { icon = "✈️"; }
-
-      document.getElementById("modalTitle").textContent = person.name;
-      document.getElementById("modalEmojiContainer").innerHTML = `
-        <span class="universal-emoji" style="--aura-color: ${auraColor}; filter: drop-shadow(0 0 15px var(--aura-color));">${icon}</span>
-      `;
-      
-      document.getElementById("modalDetails").innerHTML = `
+    function detailsHTML(person) {
+      return `
         <p><strong>🎨 Color favorito:</strong> ${person.color || 'No especificado'}</p>
         <p><strong>⭐ Tema:</strong> ${person.theme || 'Sorpresa'}</p>
         <p><strong>❤️ Le gusta:</strong> ${person.activity || 'Pasarla bien'}</p>
         <p><strong>🎵 Canción:</strong> ${person.song || 'Cualquiera para bailar'}</p>`;
-      
+    }
+
+    function showInfo(person) {
+      const cleanName = person.name.trim();
+      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
+      document.getElementById("modalTitle").textContent = person.name;
+      document.getElementById("modalEmojiContainer").innerHTML =
+        `<span class="universal-emoji">${iconData.icon}</span>`;
+      document.getElementById("modalDetails").innerHTML = detailsHTML(person);
       triggerModalAnimations();
-      
-      const modalInstance = bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal'));
-      modalInstance.show();
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
     }
 
     function showCelebration(person) {
       const cleanName = person.name.trim();
       const iconData = iconConfig[cleanName] || { icon: "🎈", css: "anim-pulse" };
-      let icon = iconData.icon;
-      let auraColor = getColor(person.color);
-      
-      if (cleanName === "Daniel Amante") { icon = "✈️"; }
-
       document.getElementById("modalTitle").textContent = `¡Feliz cumpleaños ${person.name}!`;
-      document.getElementById("modalEmojiContainer").innerHTML = `
-        <span class="universal-emoji" style="--aura-color: ${auraColor}; filter: drop-shadow(0 0 15px var(--aura-color));">${icon}</span>
-      `;
-
-      document.getElementById("modalDetails").innerHTML = `
-        <p><strong>🎨 Color favorito:</strong> ${person.color || 'No especificado'}</p>
-        <p><strong>⭐ Tema:</strong> ${person.theme || 'Sorpresa'}</p>
-        <p><strong>❤️ Le gusta:</strong> ${person.activity || 'Pasarla bien'}</p>
-        <p><strong>🎵 Canción:</strong> ${person.song || 'Cualquiera para bailar'}</p>`;
-      
+      document.getElementById("modalEmojiContainer").innerHTML =
+        `<span class="universal-emoji">${iconData.icon}</span>`;
+      document.getElementById("modalDetails").innerHTML = detailsHTML(person);
       triggerModalAnimations();
-      
-      const modalInstance = bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal'));
-      modalInstance.show();
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
 
       const end = Date.now() + 2 * 1000;
       (function frame() {
         if (typeof confetti !== "undefined") {
-          confetti({ particleCount: 5, spread: 100, origin: { x: Math.random(), y: Math.random() - 0.2 } });
+          confetti({
+            particleCount: 5, spread: 100,
+            colors: ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971"],
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+          });
           if (Date.now() < end) requestAnimationFrame(frame);
         }
       })();
@@ -446,28 +552,15 @@
     function showNext(person) {
       const cleanName = person.name.trim();
       const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-      let icon = iconData.icon;
-      let auraColor = getColor(person.color);
-
-      if (cleanName === "Daniel Amante") { icon = "✈️"; }
-
       document.getElementById("modalTitle").textContent = "🎁 Próximo Cumpleaños";
-      document.getElementById("modalEmojiContainer").innerHTML = `
-        <span class="universal-emoji" style="--aura-color: ${auraColor}; filter: drop-shadow(0 0 15px var(--aura-color));">${icon}</span>
-      `;
-
+      document.getElementById("modalEmojiContainer").innerHTML =
+        `<span class="universal-emoji">${iconData.icon}</span>`;
       document.getElementById("modalDetails").innerHTML = `
-        <h4 class="fw-bold mb-3 text-center" style="color: #333;">${person.name}</h4>
+        <h4 class="fw-bold mb-3 text-center" style="font-family:'Baloo 2',sans-serif;">${person.name}</h4>
         <p><strong>📅 Fecha:</strong> ${person.dob.toLocaleDateString("es-ES", { day: "numeric", month: "long" })}</p>
-        <p><strong>🎨 Color favorito:</strong> ${person.color || 'No especificado'}</p>
-        <p><strong>⭐ Tema:</strong> ${person.theme || 'Sorpresa'}</p>
-        <p><strong>❤️ Le gusta:</strong> ${person.activity || 'Pasarla bien'}</p>
-        <p><strong>🎵 Canción:</strong> ${person.song || 'Cualquiera para bailar'}</p>`;
-      
+        ${detailsHTML(person)}`;
       triggerModalAnimations();
-      
-      const modalInstance = bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal'));
-      modalInstance.show();
+      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
     }
   </script>
 </body>
