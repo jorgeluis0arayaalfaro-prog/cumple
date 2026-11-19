@@ -11,24 +11,25 @@
 
   <style>
     :root {
-      --paper: #FFF3E0;
-      --paper-2: #FFE8CC;
-      --coral: #FF6B4A;
-      --dusk: #2D1B4E;
-      --marigold: #FFB347;
-      --teal: #4A90A4;
-      --magenta: #E63971;
+      --morado: #592c87;
+      --oxford: #3a3d42;
+      --naranja: #e46b24;
+      --verde: #62bb46;
+      --azul: #313d64;
     }
 
     * { box-sizing: border-box; }
 
     body {
       background:
-        radial-gradient(1200px 500px at 50% -10%, #FFD9A0 0%, transparent 60%),
-        linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 55%, #FFDCC2 100%);
+        radial-gradient(900px 480px at 10% 0%, rgba(228, 107, 36, 0.22) 0%, transparent 60%),
+        radial-gradient(900px 520px at 90% 15%, rgba(98, 187, 70, 0.16) 0%, transparent 55%),
+        linear-gradient(155deg, #222b49 0%, var(--azul) 38%, var(--morado) 100%);
+      background-attachment: fixed;
       font-family: "Inter", "Segoe UI", Roboto, sans-serif;
-      color: var(--dusk);
+      color: #ffffff;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     .universal-emoji {
@@ -37,22 +38,23 @@
 
     h1, h2 {
       font-family: "Baloo 2", "Segoe UI", sans-serif;
-      color: var(--dusk);
+      color: #ffffff;
     }
 
     h1 {
       text-align: center;
       font-weight: 800;
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       margin: 0.25rem 0 0;
       letter-spacing: 0.5px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
 
     .subtitle {
       text-align: center;
-      color: #6b5a8a;
+      color: rgba(255, 255, 255, 0.82);
       font-size: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     h2 {
@@ -69,7 +71,7 @@
       flex: 1;
       height: 3px;
       background: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 14px);
-      opacity: 0.35;
+      opacity: 0.4;
       border-radius: 2px;
     }
 
@@ -84,7 +86,7 @@
       position: absolute;
       top: 18px; left: 0; right: 0;
       height: 2px;
-      background: repeating-linear-gradient(90deg, #8a7256 0 10px, transparent 10px 16px);
+      background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.55) 0 10px, transparent 10px 16px);
     }
     .picado-row {
       display: flex;
@@ -109,7 +111,7 @@
       justify-content: center;
       padding-top: 10px;
       font-size: 1.1rem;
-      opacity: 0.92;
+      color: rgba(255, 255, 255, 0.92);
       animation: flagSway 3.4s ease-in-out infinite;
       transform-origin: top center;
     }
@@ -122,54 +124,58 @@
 
     /* ---------- Cards ---------- */
     .birthday-card {
-      border: none;
-      border-radius: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 1.25rem;
       cursor: pointer;
-      transition: all 0.25s ease;
-      background: #fffaf3;
-      box-shadow: 0 6px 16px rgba(45, 27, 78, 0.10);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 26px rgba(15, 18, 35, 0.28);
       position: relative;
-      overflow: visible;
+      overflow: hidden;
+    }
+
+    .birthday-card::before {
+      content: "";
+      display: block;
+      height: 6px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--morado), var(--naranja));
     }
 
     .birthday-card:hover {
-      transform: translateY(-6px) rotate(-0.5deg);
-      box-shadow: 0 12px 24px rgba(45, 27, 78, 0.18);
-    }
-
-    .birthday-card::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: -8px;
-      height: 16px;
-      background-image: radial-gradient(circle at 8px 0, transparent 8px, #fffaf3 8.5px);
-      background-size: 16px 16px;
-      background-repeat: repeat-x;
-      pointer-events: none;
+      transform: translateY(-6px);
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.36);
+      border-color: rgba(255, 255, 255, 0.5);
     }
 
     .next-birthday-card {
-      border: 3px dashed var(--coral);
-      animation: pulseAccent 2s infinite;
-      background: linear-gradient(160deg, #fffaf3 0%, #FFF0E0 100%);
+      border: 3px solid var(--naranja);
+      animation: pulseAccent 2.2s infinite;
+      background: #ffffff;
+    }
+
+    .next-birthday-card::before {
+      height: 8px;
+      background: linear-gradient(90deg, var(--azul), var(--morado), var(--naranja));
     }
 
     @keyframes pulseAccent {
-      0% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0.45); }
-      70% { box-shadow: 0 0 0 12px rgba(255, 107, 74, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(228, 107, 36, 0.55); }
+      70% { box-shadow: 0 0 0 14px rgba(228, 107, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(228, 107, 36, 0); }
     }
 
-    .today-birthday .card-body {
-      background: linear-gradient(160deg, #FFF3D6 0%, #FFE3B0 100%);
-      border-radius: 0 0 1.1rem 1.1rem;
+    .today-birthday {
+      border: 3px solid var(--verde);
+      background: linear-gradient(180deg, #ffffff 0%, #f1faee 100%);
     }
 
-    .today-birthday::after {
-      background-image: radial-gradient(circle at 8px 0, transparent 8px, #FFE3B0 8.5px);
+    .today-birthday::before {
+      height: 8px;
+      background: linear-gradient(90deg, var(--morado), var(--verde));
     }
 
-    /* Medallion (lotería-style badge) around the emoji */
+    /* Medallion */
     .medallion {
       width: 92px;
       height: 92px;
@@ -179,29 +185,41 @@
       align-items: center;
       justify-content: center;
       font-size: 3rem;
-      background: radial-gradient(circle at 35% 30%, #fff 0%, #fff 35%, var(--medal-color, var(--marigold)) 100%);
-      border: 3px solid var(--medal-color, var(--marigold));
-      box-shadow: 0 0 0 5px #fffaf3, 0 4px 10px rgba(0,0,0,0.08);
+      background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ffffff 38%, var(--medal-color, var(--morado)) 100%);
+      border: 3px solid var(--medal-color, var(--morado));
+      box-shadow: 0 0 0 5px #ffffff, 0 6px 14px rgba(49, 61, 100, 0.16);
     }
 
     .card-name {
       font-family: "Baloo 2", sans-serif;
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
+      color: var(--azul);
       margin: 0.75rem 0 0.15rem;
+      line-height: 1.25;
     }
 
     .card-date {
-      color: #8a7ba0;
+      color: var(--oxford);
+      opacity: 0.75;
       font-weight: 500;
-      margin-bottom: 0;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
     }
 
     .badge-today {
-      background: var(--magenta);
+      background: linear-gradient(90deg, var(--morado), var(--naranja));
+      color: #ffffff;
       font-family: "Inter", sans-serif;
       font-weight: 600;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.4px;
+      padding: 0.4em 0.85em;
+      border-radius: 999px;
+    }
+
+    .empty-msg {
+      color: rgba(255, 255, 255, 0.75);
+      font-style: italic;
     }
 
     /* Icon animations */
@@ -237,20 +255,29 @@
     /* ---------- Modal ---------- */
     .modal-content {
       border-radius: 1.5rem;
-      background: #fffaf3;
+      background: #ffffff;
       border: none;
       overflow: hidden;
+      color: var(--oxford);
     }
     .modal-content::before {
       content: "";
       display: block;
       height: 10px;
-      background: repeating-linear-gradient(90deg,
-        var(--coral) 0 20px, var(--marigold) 20px 40px, var(--teal) 40px 60px, var(--magenta) 60px 80px);
+      background: linear-gradient(90deg, var(--azul) 0%, var(--morado) 35%, var(--naranja) 70%, var(--verde) 100%);
     }
-    #modalTitle { font-family: "Baloo 2", sans-serif; }
-    #modalDetails p { margin-bottom: 0.6rem; word-break: break-word; }
-    #modalDetails strong { color: var(--dusk); }
+    #modalTitle {
+      font-family: "Baloo 2", sans-serif;
+      color: var(--azul);
+    }
+    #modalDetails p {
+      margin-bottom: 0.65rem;
+      word-break: break-word;
+      color: var(--oxford);
+    }
+    #modalDetails strong {
+      color: var(--morado);
+    }
 
     .emoji-grow-fx {
       display: inline-block;
@@ -269,12 +296,15 @@
     @keyframes simpleFade { 100% { opacity: 1; } }
 
     .btn-primary {
-      background: var(--coral);
-      border-color: var(--coral);
+      background: linear-gradient(90deg, var(--morado), var(--azul));
+      border: none;
+      font-weight: 600;
+      padding: 0.6rem 1.25rem;
+      transition: filter 0.2s ease, transform 0.2s ease;
     }
     .btn-primary:hover, .btn-primary:active {
-      background: var(--magenta) !important;
-      border-color: var(--magenta) !important;
+      background: linear-gradient(90deg, var(--morado), var(--naranja)) !important;
+      transform: translateY(-1px);
     }
   </style>
 </head>
@@ -305,13 +335,13 @@
     <p class="subtitle">🌅 Un calendario para celebrar a cada quien como le gusta</p>
     <div id="error-box" class="alert alert-danger d-none text-center"></div>
 
-    <h2 class="mb-3 universal-emoji" style="color: var(--coral);">🎁 Próximo cumpleaños</h2>
+    <h2 class="mb-3 universal-emoji" style="color: #ff9f5a;">🎁 Próximo cumpleaños</h2>
     <div id="next-birthday" class="row mb-5 justify-content-center"></div>
 
-    <h2 class="mb-3 universal-emoji" style="color: var(--magenta);">💖 Cumpleaños de este mes</h2>
+    <h2 class="mb-3 universal-emoji" style="color: #d8b4ff;">💖 Cumpleaños de este mes</h2>
     <div id="this-month" class="row g-4 mb-5"></div>
 
-    <h2 class="mb-3 universal-emoji" style="color: var(--teal);">🗓️ Todos los cumpleaños</h2>
+    <h2 class="mb-3 universal-emoji" style="color: #8ee074;">🗓️ Todos los cumpleaños</h2>
     <div id="all-birthdays" class="row g-4"></div>
   </div>
 
@@ -342,23 +372,21 @@
       { "name": "Alejandro Gutiérrez Montaño", "dob": "1994-06-10", "theme": "Vintage - Bohemio / Vaquero", "activity": "Mark Wahlberg, ir a la playa, maratonear películas de acción.", "color": "Negro, Azul marino", "song": "Las Mañanitas con Mariachi (Vicente Fernández)", "photo": "" }
     ];
 
-    const FIESTA_PALETTE = ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971", "#8a5fbf", "#2D9C6F"];
+    const BRAND_PALETTE = ["#592c87", "#e46b24", "#62bb46", "#313d64", "#3a3d42"];
 
     function getColor(colorDesc) {
-      if (!colorDesc) return "#FFB347";
+      if (!colorDesc) return "#592c87";
       const desc = colorDesc.toLowerCase();
-      if (desc.includes("verde")) return "#2D9C6F";
-      if (desc.includes("azul")) return "#4A90A4";
-      if (desc.includes("rosa")) return "#E63971";
-      if (desc.includes("rojo") || desc.includes("tinto")) return "#FF6B4A";
-      if (desc.includes("morado") || desc.includes("lila")) return "#8a5fbf";
-      if (desc.includes("negro") || desc.includes("black")) return "#2D1B4E";
-      if (desc.includes("aqua")) return "#4A90A4";
-      if (desc.includes("cafe") || desc.includes("café") || desc.includes("beige")) return "#A9714C";
-      if (desc.includes("gris")) return "#8a7ba0";
-      if (desc.includes("blanco")) return "#cfcfcf";
-      if (desc.includes("pastel")) return "#FFB6C1";
-      return "#FFB347";
+      if (desc.includes("verde")) return "#62bb46";
+      if (desc.includes("azul")) return "#313d64";
+      if (desc.includes("morado") || desc.includes("lila")) return "#592c87";
+      if (desc.includes("rojo") || desc.includes("naranja") || desc.includes("tinto")) return "#e46b24";
+      if (desc.includes("negro") || desc.includes("black") || desc.includes("gris")) return "#3a3d42";
+      if (desc.includes("rosa")) return "#d6458a";
+      if (desc.includes("aqua")) return "#3b9ca8";
+      if (desc.includes("cafe") || desc.includes("café") || desc.includes("beige")) return "#8c5a3c";
+      if (desc.includes("blanco")) return "#9aa0ab";
+      return "#592c87";
     }
 
     const iconConfig = {
@@ -388,8 +416,8 @@
       const row = document.getElementById("picadoRow");
       if (!row) return;
       let html = "";
-      for (let i = 0; i < 14; i++) {
-        const color = FIESTA_PALETTE[i % FIESTA_PALETTE.length];
+      for (let i = 0; i < 15; i++) {
+        const color = BRAND_PALETTE[i % BRAND_PALETTE.length];
         html += `<div class="picado-flag" style="background:${color};">✦</div>`;
       }
       row.innerHTML = html;
@@ -408,7 +436,7 @@
             <div class="text-center pt-4 pb-1">
               <div class="medallion" style="--medal-color: ${auraColor};">${emojiHTML}</div>
             </div>
-            <div class="card-body text-center d-flex flex-column justify-content-center pt-2">
+            <div class="card-body text-center d-flex flex-column justify-content-center pt-2 pb-4">
               <div class="card-name">${p.name}</div>
               <p class="card-date">${date}</p>
               ${p.isToday ? '<div class="mt-2"><span class="badge badge-today">¡ES HOY!</span></div>' : ""}
@@ -475,7 +503,7 @@
           confetti({
             particleCount: 5,
             spread: 100,
-            colors: ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971"],
+            colors: ["#592c87", "#e46b24", "#62bb46", "#313d64"],
             origin: { x: Math.random(), y: Math.random() - 0.2 }
           });
           if (Date.now() < end) requestAnimationFrame(frame);
@@ -489,7 +517,7 @@
       document.getElementById("modalTitle").textContent = "🎁 Próximo Cumpleaños";
       document.getElementById("modalEmojiContainer").innerHTML = `<span class="universal-emoji">${iconData.icon}</span>`;
       document.getElementById("modalDetails").innerHTML = `
-        <h4 class="fw-bold mb-3 text-center" style="font-family:'Baloo 2',sans-serif;">${person.name}</h4>
+        <h4 class="fw-bold mb-3 text-center" style="font-family:'Baloo 2',sans-serif; color: var(--azul);">${person.name}</h4>
         <p><strong>📅 Fecha:</strong> ${person.dob.toLocaleDateString("es-ES", { day: "numeric", month: "long" })}</p>
         ${detailsHTML(person)}`;
       triggerModalAnimations();
@@ -524,7 +552,7 @@
         const monthBirthdays = processed.filter(p => p.month === currentMonth);
         document.getElementById("this-month").innerHTML = monthBirthdays.length
           ? monthBirthdays.map(p => createCard(p)).join("")
-          : "<p class='text-muted'>No hay cumpleaños este mes.</p>";
+          : "<p class='empty-msg'>No hay cumpleaños este mes.</p>";
 
         document.getElementById("all-birthdays").innerHTML = processed.map(p => createCard(p)).join("");
 
