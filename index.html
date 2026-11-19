@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 
   <style>
-    :root{
+    :root {
       --paper: #FFF3E0;
       --paper-2: #FFE8CC;
       --coral: #FF6B4A;
@@ -137,7 +137,6 @@
       box-shadow: 0 12px 24px rgba(45, 27, 78, 0.18);
     }
 
-    /* scalloped bottom edge, like a die-cut invitation */
     .birthday-card::after {
       content: "";
       position: absolute;
@@ -205,7 +204,7 @@
       letter-spacing: 0.3px;
     }
 
-    /* icon animations kept, just parameterized via --aura-color already used */
+    /* Icon animations */
     .anim-float { animation: floatAnim 3s ease-in-out infinite; }
     @keyframes floatAnim {
       0%, 100% { transform: translateY(0); }
@@ -235,19 +234,6 @@
       50% { transform: scale(1.12) translateY(-4px); }
     }
 
-    .arturo-cake { position: relative; }
-    .arturo-cake::after {
-      content: '✨';
-      position: absolute;
-      top: -10px; right: -14px;
-      font-size: 1.1rem;
-      animation: sparkle 1.5s infinite alternate ease-in-out;
-    }
-    @keyframes sparkle {
-      0% { opacity: 0.3; transform: scale(0.8) rotate(-10deg); }
-      100% { opacity: 1; transform: scale(1.3) rotate(10deg); }
-    }
-
     /* ---------- Modal ---------- */
     .modal-content {
       border-radius: 1.5rem;
@@ -263,7 +249,7 @@
         var(--coral) 0 20px, var(--marigold) 20px 40px, var(--teal) 40px 60px, var(--magenta) 60px 80px);
     }
     #modalTitle { font-family: "Baloo 2", sans-serif; }
-    #modalDetails p { margin-bottom: 0.6rem; }
+    #modalDetails p { margin-bottom: 0.6rem; word-break: break-word; }
     #modalDetails strong { color: var(--dusk); }
 
     .emoji-grow-fx {
@@ -334,44 +320,201 @@
 
   <script>
     const birthdayData = [
-      {"name": "Ricardo", "dob": "1979-02-09", "theme": "Star wars o el mar", "activity": "RT D2", "color": "Azul o verde", "song": "Tema de star wars", "photo": ""},
-      {"name": "Norma Isabel Corona Vizcaino", "dob": "1982-08-19", "theme": "Fiesta, globos, banda, mariachi, folklor", "activity": "Bailar zapateado, cumbia y banda", "color": "Cafe, beige y rosa", "song": "Mañanitas alegres o con banda", "photo": ""},
-      {"name": "Oscar Eliecer Lucio Palacio", "dob": "1987-01-01", "theme": "Calabozos y Dragones, libros de terror y fantasía. Magic the gathering", "activity": "Leer, jugar Rol o magic", "color": "negro", "song": "Happy birthday de the Beatles", "photo": ""},
-      {"name": "Nicolás Gilberto Rojas Prado", "dob": "1989-02-04", "theme": "Star War - Vikingos", "activity": "Ramstein", "color": "Negro, tinto, tonos grises", "song": "las mañanitas estilo pink floyd", "photo": ""},
-      {"name": "Lucia Guadalupe Hernández Fierro", "dob": "1993-12-09", "theme": "Harry Potter, aviones, caballos, country girl.", "activity": "Selena gomez, Taylor Swift, Gabito Ballesteros.", "color": "Rojo y rosa", "song": "La canción que sea, menos de rock ni metal", "photo": ""},
-      {"name": "Briceyda González", "dob": "1994-11-09", "theme": "Libros, mandalas, café, asesinos seriales, gerberas.", "activity": "Matisse, Carin León, Leer.", "color": "Negro, morado y lila.", "song": "ai nose (Reggetón viejito)", "photo": ""},
-      {"name": "Jessica De Anda", "dob": "1995-03-15", "theme": "Tulipanes, mar, perritos y gatitos, cafe jaja", "activity": "Hello kitty, hacer ejercicio, tomar cafe", "color": "Aqua", "song": "reggaeton champagne jaja no es cierto, puede ser cualquiera, que sea movida", "photo": ""},
-      {"name": "Daniel Amante", "dob": "1996-10-08", "theme": "Los perros, el soccer, la formula 1", "activity": "Adele o CR7", "color": "Rojo", "song": "La que se les ocurra está bien jaja", "photo": ""},
-      {"name": "Liz", "dob": "1999-01-22", "theme": "Amante de los atardeceres, bosque, flores, de las estrellas que me recuerdan que lo simple es lo más bonito.", "activity": "Carla Morrison, Mon Laferte, Barbie en Un Cuento de Sirenas, peluches", "color": "Colores pastel, rosa, azul", "song": "José Luis Rodríguez - Agradecido", "photo": ""},
-      {"name": "Priscila Jacqueline Páez Martinez", "dob": "1999-11-23", "theme": "flores, brillos", "activity": "stitch, one direction", "color": "Rojo y azul", "song": "rich girl", "photo": ""},
-      {"name": "Pamela", "dob": "2025-07-08", "theme": "minimalismo", "activity": "playa, Rugrats, los guapos de F1", "color": "Morado", "song": "cualquier canción con vibe de playa", "photo": ""},
-      {"name": "Arturo Joel Martínez Ponce", "dob": "1983-04-27", "theme": "general, de fiesta", "activity": "baile folclórico", "color": "azul", "song": "las mañanitas", "photo": ""},
-      {"name": "Luis Enrique Gastelum Castro", "dob": "1996-08-15", "theme": "Super Héroes, Futbol", "activity": "Marvel, Ricardo Arjona, Naruto Shippuden", "color": "Black, blanco, gris", "song": "devuélveme a mi chica - Hombre G", "photo": ""},
-      {"name": "Getzemani David Albavera Soto", "dob": "1987-04-29", "theme": "naturaleza", "activity": "senderismo", "color": "negro", "song": "adventure of a lifetime", "photo": ""},
-      {"name": "Jorge Luis Araya Alfaro", "dob": "1994-02-09", "theme": "Mitología, Magia, Harry Potter, Percy Jackson", "activity": "Percy Jackson, El atardecer", "color": "Verde, azul y rojo", "song": "Make you feel My Love - Adele", "photo": ""},
-      {"name": "Oscar Martín Aguilar", "dob": "1990-01-30", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
-      {"name": "Karizma Macias Ramos", "dob": "1995-08-21", "theme": "mar", "activity": "Nanny fran", "color": "Blanco", "song": "feliz cumpleaños song", "photo": ""},
-      {"name": "Arlette Alejandra Cruzado Rodríguez", "dob": "2025-10-16", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
-      {"name": "Vladimir Zárate Nava", "dob": "2025-12-28", "theme": "", "activity": "", "color": "", "song": "", "photo": ""},
-      {"name": "Alejandro Gutiérrez Montaño", "dob": "1994-06-10", "theme": "Vintage casual, bohemio", "activity": "Mark Wahlberg, Ironman de Marvel, ver películas y serie mundial de beisbol", "color": "Negro, Azul marino", "song": "Mañanitas con mariachi", "photo": ""},
-      {"name": "Efrén Ernesto Pardo González", "dob": "1988-08-16", "theme": "", "activity": "Goku en Dragon Ball", "color": "Rojo", "song": "Las mañanitas", "photo": ""},
-      {"name": "Fabián Yarath Montiel Purdon", "dob": "2000-07-31", "theme": "Ciencias", "activity": "José José", "color": "Azul", "song": "Las mañanitas con cepillín", "photo": ""}
+      {
+        "name": "Jorge Araya",
+        "dob": "1994-02-09",
+        "theme": "Mar, Montaña, Naturaleza, Magia y Esoterismo.",
+        "activity": "Emma Roberts, Angemon, Angewomon, Ladydevimon, Harry Potter, Percy Jackson, Digimon y Pokémon.",
+        "color": "Verde esmeralda",
+        "song": "Un beso y una flor de Nino Bravo",
+        "photo": ""
+      },
+      {
+        "name": "Efrén Ernesto Pardo González",
+        "dob": "1988-08-16",
+        "theme": "Terror",
+        "activity": "José José",
+        "color": "Rojo y Azul",
+        "song": "Las mañanitas con la música de Halloween Theme",
+        "photo": ""
+      },
+      {
+        "name": "Lezly Gpe. Ramírez Acuña",
+        "dob": "1996-02-01",
+        "theme": "El arte, la enología y películas de Marvel.",
+        "activity": "Mon Laferte y me gusta mucho nadar.",
+        "color": "Verde (en todas sus presentaciones)",
+        "song": "Las Mañanitas - en vivo con Los Ejemplares del Rancho",
+        "photo": ""
+      },
+      {
+        "name": "Nicolás Gilberto Rojas Prado",
+        "dob": "1989-02-04",
+        "theme": "Star Wars",
+        "activity": "Darth Vader, Rock",
+        "color": "Negro, gris",
+        "song": "Mañanitas con Pink Floyd https://youtu.be/PrZ0T0Eiggw",
+        "photo": ""
+      },
+      {
+        "name": "Arlette Alejandra Cruzado Rodríguez",
+        "dob": "1996-10-16",
+        "theme": "Gatos",
+        "activity": "Bucear",
+        "color": "Negro",
+        "song": "Rastamandita",
+        "photo": ""
+      },
+      {
+        "name": "Briceyda González",
+        "dob": "2026-11-09",
+        "theme": "Fan de las gerberas, libros, el café y Young Miko",
+        "activity": "Young Miko y Snoopy",
+        "color": "Negro",
+        "song": "Young Miko - BIAF o Amor chiquito de Los Cardenales",
+        "photo": ""
+      },
+      {
+        "name": "Jessy de Anda",
+        "dob": "1995-03-15",
+        "theme": "Café, perritos, ejercicio, tulipanes",
+        "activity": "Hello Kitty, perritos, tomar café y comer postres",
+        "color": "Aqua o lila",
+        "song": "La nena - Edén Muñoz | Can't Take My Eyes Off You | Floricienta",
+        "photo": ""
+      },
+      {
+        "name": "Lucia Guadalupe Hernández Fierro",
+        "dob": "1993-12-09",
+        "theme": "Harry Potter, Cowgirl, Disney",
+        "activity": "Taylor Swift, Selena Gomez, Justin Bieber (gusto culposo: Joan Sebastian, Carin León, Luis Miguel) / Actividad: Pilates",
+        "color": "Rojo",
+        "song": "Canciones de Taylor Swift o Justin Bieber",
+        "photo": ""
+      },
+      {
+        "name": "Luis Enrique Gastelum Castro",
+        "dob": "1996-08-15",
+        "theme": "Universo Marvel y Real Madrid",
+        "activity": "Marvel (Spider-Man y X-Men), Futbol",
+        "color": "Negro, azul marino",
+        "song": "HIMNO UEFA CHAMPIONS LEAGUE",
+        "photo": ""
+      },
+      {
+        "name": "Priscila Jacqueline Páez Martínez",
+        "dob": "1999-11-23",
+        "theme": "Atardecer, playa, brillos",
+        "activity": "Leer, Stitch, One Direction",
+        "color": "Rojo, azul cielo, rosa",
+        "song": "Rich Girl",
+        "photo": ""
+      },
+      {
+        "name": "Karizma Macias Ramos",
+        "dob": "1995-08-21",
+        "theme": "House of the Dragon",
+        "activity": "Nanny Fran, House of the Dragon",
+        "color": "Blanco y rosa",
+        "song": "Me da igual",
+        "photo": ""
+      },
+      {
+        "name": "Norma Isabel Corona Vizcaino",
+        "dob": "1982-08-19",
+        "theme": "La vida es un carnaval - Celia Cruz",
+        "activity": "Pasar tiempo con mis hijos, mi familia, y pasear",
+        "color": "El café",
+        "song": "Río Roma - Bonito, Bonito",
+        "photo": ""
+      },
+      {
+        "name": "Diana Esquer",
+        "dob": "1988-07-23",
+        "theme": "",
+        "activity": "Mafalda, Snoopy, actividades en el mar como andar en Kayak",
+        "color": "Rosa",
+        "song": "Las mañanitas con mariachi",
+        "photo": ""
+      },
+      {
+        "name": "Daniel Amante",
+        "dob": "1996-10-08",
+        "theme": "Futbol - Perros - Formula 1",
+        "activity": "Adele",
+        "color": "Rojo",
+        "song": "Sorpréndanme",
+        "photo": ""
+      },
+      {
+        "name": "Pamela Rodríguez",
+        "dob": "1993-07-08",
+        "theme": "La playa, la naturaleza, las flores",
+        "activity": "Hello Kitty, Rugrats, Jude Bellingham",
+        "color": "Lila y morado",
+        "song": "Algo de Dua Lipa, Rüfüs Du Sol o Lana del Rey",
+        "photo": ""
+      },
+      {
+        "name": "Eliecer Lucio",
+        "dob": "1987-01-01",
+        "theme": "Calabozos y Dragones. Libros de terror o fantasía. Star Wars",
+        "activity": "Leer, jugar Dungeons and Dragons, jugar Magic the Gathering",
+        "color": "Negro",
+        "song": "Birthday (The Beatles)",
+        "photo": ""
+      },
+      {
+        "name": "Liz Peña",
+        "dob": "1999-01-22",
+        "theme": "Luna, flores, mediterráneo, romántico",
+        "activity": "Moana, Encantada, La Bella y la Bestia",
+        "color": "Rosa, champagne",
+        "song": "",
+        "photo": ""
+      },
+      {
+        "name": "Fabián Yarath Montiel Purdon",
+        "dob": "2000-07-31",
+        "theme": "Ciencias",
+        "activity": "José José",
+        "color": "Azul",
+        "song": "Popurrí: Que Te Falta Mujer / Caray / No Le Vaya a Suceder (En el Palacio de Bellas Artes) - Juan Gabriel",
+        "photo": ""
+      },
+      {
+        "name": "Vladimir Zárate Nava",
+        "dob": "1988-12-28",
+        "theme": "Sociales",
+        "activity": "Comer",
+        "color": "Blanco",
+        "song": "",
+        "photo": ""
+      },
+      {
+        "name": "Alejandro Gutiérrez Montaño",
+        "dob": "1994-06-10",
+        "theme": "Vintage - Bohemio / Vaquero",
+        "activity": "Mark Wahlberg, ir a la playa, maratonear películas de acción.",
+        "color": "Negro, Azul marino",
+        "song": "Las Mañanitas con Mariachi (Vicente Fernández)",
+        "photo": ""
+      }
     ];
 
-    // Fiesta palette used for both papel picado flags and the "no color declared" fallback
     const FIESTA_PALETTE = ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971", "#8a5fbf", "#2D9C6F"];
 
     function getColor(colorDesc) {
       if (!colorDesc) return "#FFB347";
       const desc = colorDesc.toLowerCase();
-      if (desc.includes('azul')) return '#4A90A4';
       if (desc.includes('verde')) return '#2D9C6F';
+      if (desc.includes('azul')) return '#4A90A4';
       if (desc.includes('rosa')) return '#E63971';
       if (desc.includes('rojo') || desc.includes('tinto')) return '#FF6B4A';
       if (desc.includes('morado') || desc.includes('lila')) return '#8a5fbf';
       if (desc.includes('negro') || desc.includes('black')) return '#2D1B4E';
       if (desc.includes('aqua')) return '#4A90A4';
-      if (desc.includes('cafe') || desc.includes('beige')) return '#A9714C';
+      if (desc.includes('cafe') || desc.includes('café') || desc.includes('beige')) return '#A9714C';
       if (desc.includes('gris')) return '#8a7ba0';
       if (desc.includes('blanco')) return '#cfcfcf';
       if (desc.includes('pastel')) return '#FFB6C1';
@@ -379,28 +522,26 @@
     }
 
     const iconConfig = {
-      "Ricardo": { icon: "🤖", css: "anim-spin" },
+      "Jorge Araya": { icon: "🔱", css: "anim-trident" },
+      "Efrén Ernesto Pardo González": { icon: "🎃", css: "anim-shake" },
+      "Lezly Gpe. Ramírez Acuña": { icon: "🎨", css: "anim-float" },
+      "Nicolás Gilberto Rojas Prado": { icon: "🎸", css: "anim-shake" },
+      "Arlette Alejandra Cruzado Rodríguez": { icon: "🐱", css: "anim-bounce" },
+      "Briceyda González": { icon: "🌼", css: "anim-float" },
+      "Jessy de Anda": { icon: "🌷", css: "anim-bounce" },
+      "Lucia Guadalupe Hernández Fierro": { icon: "🤠", css: "anim-bounce" },
+      "Luis Enrique Gastelum Castro": { icon: "🕷️", css: "anim-bounce" },
+      "Priscila Jacqueline Páez Martínez": { icon: "✨", css: "anim-pulse" },
+      "Karizma Macias Ramos": { icon: "🐉", css: "anim-float" },
       "Norma Isabel Corona Vizcaino": { icon: "💃", css: "anim-bounce" },
-      "Oscar Eliecer Lucio Palacio": { icon: "🐉", css: "anim-float" },
-      "Nicolás Gilberto Rojas Prado": { icon: "🪓", css: "anim-shake" },
-      "Lucia Guadalupe Hernández Fierro": { icon: "🐎", css: "anim-bounce" },
-      "Briceyda González": { icon: "🔪", css: "anim-float" },
-      "Jessica De Anda": { icon: "🐶", css: "anim-bounce" },
+      "Diana Esquer": { icon: "🛶", css: "anim-float" },
       "Daniel Amante": { icon: "🏎️", css: "anim-bounce" },
-      "Liz": { icon: "🌅", css: "anim-pulse" },
-      "Priscila Jacqueline Páez Martinez": { icon: "✨", css: "anim-pulse" },
-      "Pamela": { icon: "🏖️", css: "anim-float" },
-      "Luis Enrique Gastelum Castro": { icon: "🦸‍♂️", css: "anim-bounce" },
-      "Getzemani David Albavera Soto": { icon: "🌲", css: "anim-float" },
-      "Jorge Luis Araya Alfaro": { icon: "🔱", css: "anim-trident" },
-      "Arturo Joel Martínez Ponce": { icon: "🪅", css: "anim-pulse" },
-      "Oscar Martín Aguilar": { icon: "🥳", css: "anim-pulse" },
-      "Karizma Macias Ramos": { icon: "🌊", css: "anim-float" },
-      "Arlette Alejandra Cruzado Rodríguez": { icon: "🎈", css: "anim-float" },
-      "Vladimir Zárate Nava": { icon: "🎊", css: "anim-pulse" },
-      "Alejandro Gutiérrez Montaño": { icon: "🦾", css: "anim-bounce" },
-      "Efrén Ernesto Pardo González": { icon: "🐲", css: "anim-shake" },
-      "Fabián Yarath Montiel Purdon": { icon: "🔬", css: "anim-float" }
+      "Pamela Rodríguez": { icon: "🏖️", css: "anim-float" },
+      "Eliecer Lucio": { icon: "🎲", css: "anim-spin" },
+      "Liz Peña": { icon: "🌙", css: "anim-pulse" },
+      "Fabián Yarath Montiel Purdon": { icon: "🔬", css: "anim-float" },
+      "Vladimir Zárate Nava": { icon: "🍽️", css: "anim-pulse" },
+      "Alejandro Gutiérrez Montaño": { icon: "🎬", css: "anim-bounce" }
     };
 
     function buildPicadoBanner() {
@@ -414,6 +555,10 @@
       row.innerHTML = html;
     }
 
+    function linkify(text) {
+      return text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       try {
         buildPicadoBanner();
@@ -424,140 +569,29 @@
 
         const processed = birthdayData.map(p => {
           const dob = new Date(p.dob + "T00:00:00");
-          return { ...p, dob, month: dob.getMonth(), day: dob.getDate(), isToday: dob.getMonth() === currentMonth && dob.getDate() === currentDate };
-        }).sort((a,b) => a.month - b.month || a.day - b.day);
+          return {
+            ...p,
+            dob,
+            month: dob.getMonth(),
+            day: dob.getDate(),
+            isToday: dob.getMonth() === currentMonth && dob.getDate() === currentDate
+          };
+        }).sort((a, b) => a.month - b.month || a.day - b.day);
 
         const todayBirthdays = processed.filter(p => p.isToday);
         let next = processed.find(p => p.month > currentMonth || (p.month === currentMonth && p.day >= currentDate));
         if (!next) next = processed[0];
 
         document.getElementById("next-birthday").innerHTML = createCard(next, true);
+
         const monthBirthdays = processed.filter(p => p.month === currentMonth);
         document.getElementById("this-month").innerHTML = monthBirthdays.length
           ? monthBirthdays.map(p => createCard(p)).join("")
           : "<p class='text-muted'>No hay cumpleaños este mes.</p>";
+
         document.getElementById("all-birthdays").innerHTML = processed.map(p => createCard(p)).join("");
 
         document.querySelectorAll(".birthday-card").forEach(card => {
           card.addEventListener("click", () => {
             const person = processed.find(p => p.name === card.dataset.name);
             showInfo(person);
-          });
-        });
-
-        setTimeout(() => {
-          if (todayBirthdays.length > 0) {
-            showCelebration(todayBirthdays[0]);
-          } else {
-            showNext(next);
-          }
-        }, 1000);
-      } catch (error) {
-        document.getElementById("error-box").classList.remove("d-none");
-        document.getElementById("error-box").textContent = "Hubo un error cargando las tarjetas: " + error.message;
-      }
-    });
-
-    function createCard(p, highlight = false) {
-      const date = p.dob.toLocaleDateString("es-ES", { day: "numeric", month: "long" });
-      const cleanName = p.name.trim();
-      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-      const auraColor = getColor(p.color);
-
-      let emojiHTML = `<span class="universal-emoji ${iconData.css}">${iconData.icon}</span>`;
-      if (cleanName === "Arturo Joel Martínez Ponce") {
-        emojiHTML = `<span class="universal-emoji arturo-cake ${iconData.css}">${iconData.icon}</span>`;
-      }
-
-      return `
-        <div class="col-md-4 col-lg-3">
-          <div class="card birthday-card h-100 ${highlight ? "next-birthday-card" : ""} ${p.isToday ? "today-birthday" : ""}" data-name="${p.name}">
-            <div class="text-center pt-4 pb-1">
-              <div class="medallion" style="--medal-color: ${auraColor};">${emojiHTML}</div>
-            </div>
-            <div class="card-body text-center d-flex flex-column justify-content-center pt-2">
-              <div class="card-name">${p.name}</div>
-              <p class="card-date">${date}</p>
-              ${p.isToday ? '<div class="mt-2"><span class="badge badge-today">¡ES HOY!</span></div>' : ""}
-            </div>
-          </div>
-        </div>`;
-    }
-
-    function triggerModalAnimations() {
-      const emoji = document.getElementById("modalEmojiContainer");
-      const title = document.getElementById("modalTitle");
-      const details = document.getElementById("modalDetails");
-      const btn = document.getElementById("modalBtn");
-
-      emoji.classList.remove("emoji-grow-fx");
-      title.classList.remove("details-fade-fx");
-      details.classList.remove("details-fade-fx");
-      btn.classList.remove("details-fade-fx");
-
-      void emoji.offsetWidth;
-
-      emoji.classList.add("emoji-grow-fx");
-      title.classList.add("details-fade-fx");
-      details.classList.add("details-fade-fx");
-      btn.classList.add("details-fade-fx");
-    }
-
-    function detailsHTML(person) {
-      return `
-        <p><strong>🎨 Color favorito:</strong> ${person.color || 'No especificado'}</p>
-        <p><strong>⭐ Tema:</strong> ${person.theme || 'Sorpresa'}</p>
-        <p><strong>❤️ Le gusta:</strong> ${person.activity || 'Pasarla bien'}</p>
-        <p><strong>🎵 Canción:</strong> ${person.song || 'Cualquiera para bailar'}</p>`;
-    }
-
-    function showInfo(person) {
-      const cleanName = person.name.trim();
-      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-      document.getElementById("modalTitle").textContent = person.name;
-      document.getElementById("modalEmojiContainer").innerHTML =
-        `<span class="universal-emoji">${iconData.icon}</span>`;
-      document.getElementById("modalDetails").innerHTML = detailsHTML(person);
-      triggerModalAnimations();
-      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
-    }
-
-    function showCelebration(person) {
-      const cleanName = person.name.trim();
-      const iconData = iconConfig[cleanName] || { icon: "🎈", css: "anim-pulse" };
-      document.getElementById("modalTitle").textContent = `¡Feliz cumpleaños ${person.name}!`;
-      document.getElementById("modalEmojiContainer").innerHTML =
-        `<span class="universal-emoji">${iconData.icon}</span>`;
-      document.getElementById("modalDetails").innerHTML = detailsHTML(person);
-      triggerModalAnimations();
-      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
-
-      const end = Date.now() + 2 * 1000;
-      (function frame() {
-        if (typeof confetti !== "undefined") {
-          confetti({
-            particleCount: 5, spread: 100,
-            colors: ["#FF6B4A", "#FFB347", "#4A90A4", "#E63971"],
-            origin: { x: Math.random(), y: Math.random() - 0.2 }
-          });
-          if (Date.now() < end) requestAnimationFrame(frame);
-        }
-      })();
-    }
-
-    function showNext(person) {
-      const cleanName = person.name.trim();
-      const iconData = iconConfig[cleanName] || { icon: "🎉", css: "anim-pulse" };
-      document.getElementById("modalTitle").textContent = "🎁 Próximo Cumpleaños";
-      document.getElementById("modalEmojiContainer").innerHTML =
-        `<span class="universal-emoji">${iconData.icon}</span>`;
-      document.getElementById("modalDetails").innerHTML = `
-        <h4 class="fw-bold mb-3 text-center" style="font-family:'Baloo 2',sans-serif;">${person.name}</h4>
-        <p><strong>📅 Fecha:</strong> ${person.dob.toLocaleDateString("es-ES", { day: "numeric", month: "long" })}</p>
-        ${detailsHTML(person)}`;
-      triggerModalAnimations();
-      bootstrap.Modal.getOrCreateInstance(document.getElementById('infoModal')).show();
-    }
-  </script>
-</body>
-</html>
